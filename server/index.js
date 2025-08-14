@@ -4,6 +4,8 @@ const cors = require('cors');
 const dotenv = require('dotenv');
 const pool = require('./config/db');
 const bookRoutes = require('./routes/bookRoutes');
+const dictionaryRoutes = require('./routes/dictionaryRoutes');
+
 const authRoutes = require('./routes/authRoutes'); //로그인 api
 const libraryRoutes = require('./routes/libraryRoutes'); //독서기록 내 서재 불러오기 api
 const readLogsRoutes = require('./routes/readLogsRoutes'); //독서로그에 저장시키기 api
@@ -17,6 +19,9 @@ dotenv.config();
 const app = express();
 app.use(cors());
 app.use(express.json());
+
+//사전 API 호출
+app.use('/api/dictionary', dictionaryRoutes);
 
 //openAI 호출
 app.use('/api/openai', openaiRoutes);
